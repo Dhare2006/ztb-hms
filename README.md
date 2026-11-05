@@ -62,3 +62,61 @@ To run this project locally, you need to open **three separate terminals** in VS
 cd ai-service
 pip install fastapi uvicorn scikit-learn numpy
 uvicorn main:app --reload --port 8000
+
+(This starts the Machine Learning engine on port 8000)
+
+### Terminal 2: Start the Node.js Backend
+bash
+cd backend
+npm install
+node server.js
+(This starts the Zero Trust API and Blockchain engine on port 5000)
+
+Terminal 3: Start the React Frontend
+bash
+cd frontend
+npm install
+npm start
+(This opens the Obsidian UI at http://localhost:3000)
+
+🔑 Demo Credentials
+The system enforces strict Role-Based Access Control. Use the following credentials to test different perspectives (All passwords are password123):
+
+Role	Username	Access Level
+Admin	admin	Full access: Patient Ops, Dataset Lab, Billing, Audit Log, Zero Trust Center.
+Doctor	doctor	Clinical access: Patient Ops, Dataset Lab, Pharmacy. (No Audit Log).
+Nurse	nurse	Triage access: Patient Ops only.
+Lab Staff	labstaff	Data access: Dataset Lab and AI only.
+Security	security	SOC access: Zero Trust Center and Audit Log only.
+Patient	patient	Restricted access: Own Patient Portal only.
+🧪 The "Tamper Test" (Live Demo Guide)
+To see the Blockchain and AI in action, follow these steps:
+
+Log in as admin.
+
+Go to the Dataset Lab.
+
+Upload a sample patient JSON file (you can create one with fields like heart_rate, blood_pressure, age).
+
+Observe: The Python AI service returns an anomaly prediction, and the file is hashed to the blockchain.
+
+Simulate a Hack: Open the JSON file on your computer, change a single number, and save it as hacked.json.
+
+Upload hacked.json into the Integrity Verification box.
+
+Result: The system will throw a red 🚨 TAMPER DETECTED alert because the SHA-256 hash no longer matches the ledger.
+
+🔒 Security Measures Implemented
+Short-lived JWTs: Sessions expire in 15 minutes, simulating continuous authentication.
+
+Protected Routes: React ProtectedRoute component prevents URL hacking (e.g., a Nurse typing /blockchain will see an Access Denied screen).
+
+No Exposed Credentials: The login page does not expose demo passwords (unlike standard student projects).
+
+Environment Variables: JWT secrets are stored securely in .env files (git-ignored).
+
+📜 License
+This project is developed for academic research and demonstration purposes. Not for clinical use.
+
+<div align="center"> <i>Built with ❤️ for the Final Year Project Review.</i> </div> ```
+
