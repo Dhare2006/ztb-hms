@@ -87,7 +87,7 @@ app.post('/api/data/upload', authenticate, authorize(['Admin', 'Doctor']), uploa
         
         let aiResult = { prediction: "AI Service Offline" };
         try {
-            const response = await axios.post('http://localhost:8000/predict', jsonData);
+            const response = await axios.post('https://zerotrustx-ai-v1.onrender.com/predict', jsonData);
             aiResult = response.data;
         } catch (aiError) {
             console.log("AI Service Error:", aiError.message);
