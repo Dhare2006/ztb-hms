@@ -51,35 +51,34 @@ Traditional Hospital Management Systems (HMS) rely on centralized databases and 
 
 ## 🚀 Quick Start Guide
 
-To run this project locally, you need to open **three separate terminals** in VS Code.
+To run this project locally, you need to open **three separate terminals** in VS Code and run the following commands.
 
-### Prerequisites
-*   Node.js installed
-*   Python 3.10+ installed
+**Prerequisites:** Ensure Node.js and Python 3.10+ are installed on your system.
 
-### Terminal 1: Start the AI Microservice
 ```bash
+# ==========================================
+# TERMINAL 1: Start the AI Microservice
+# ==========================================
 cd ai-service
 pip install fastapi uvicorn scikit-learn numpy
 uvicorn main:app --reload --port 8000
 
-(This starts the Machine Learning engine on port 8000)
-
-### Terminal 2: Start the Node.js Backend
-bash
+# ==========================================
+# TERMINAL 2: Start the Node.js Backend
+# ==========================================
 cd backend
 npm install
 node server.js
-(This starts the Zero Trust API and Blockchain engine on port 5000)
 
-Terminal 3: Start the React Frontend
-bash
+# ==========================================
+# TERMINAL 3: Start the React Frontend
+# ==========================================
 cd frontend
 npm install
 npm start
-(This opens the Obsidian UI at http://localhost:3000)
+(The UI will automatically open at http://localhost:3000)
 
-🔑 Demo Credentials
+**🔑 Demo Credentials**
 The system enforces strict Role-Based Access Control. Use the following credentials to test different perspectives (All passwords are password123):
 
 Role	Username	Access Level
@@ -106,17 +105,16 @@ Upload hacked.json into the Integrity Verification box.
 
 Result: The system will throw a red 🚨 TAMPER DETECTED alert because the SHA-256 hash no longer matches the ledger.
 
-🔒 Security Measures Implemented
+**🔒 Security Measures Implemented**
 Short-lived JWTs: Sessions expire in 15 minutes, simulating continuous authentication.
 
 Protected Routes: React ProtectedRoute component prevents URL hacking (e.g., a Nurse typing /blockchain will see an Access Denied screen).
 
-No Exposed Credentials: The login page does not expose demo passwords (unlike standard student projects).
+No Exposed Credentials: The login page does not expose demo passwords.
 
 Environment Variables: JWT secrets are stored securely in .env files (git-ignored).
 
-📜 License
+**📜 License**
 This project is developed for academic research and demonstration purposes. Not for clinical use.
 
 <div align="center"> <i>Built with ❤️ for the Final Year Project Review.</i> </div> ```
-
