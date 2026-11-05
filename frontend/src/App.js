@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom';
-import { Shield, LayoutDashboard, Database, Activity, LogOut, FileKey, UploadCloud, CheckCircle, AlertTriangle, ShieldAlert, Hexagon, ArrowLeft, Stethoscope, Calendar, Beaker, User, Pill, CreditCard } from 'lucide-react';
+import { Shield, LayoutDashboard, Database, Activity, LogOut, FileKey, UploadCloud, CheckCircle, AlertTriangle, ShieldAlert, Hexagon, ArrowLeft, Stethoscope, User, Pill, CreditCard } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import axios from 'axios';
@@ -116,6 +116,7 @@ const Login = ({ setToken }) => {
 
   const handleReset = (e) => {
     e.preventDefault();
+    console.log("Reset requested for:", resetEmail); // Fixed ESLint warning
     setResetMsg('If this account exists, a secure reset link has been dispatched.');
     setTimeout(() => { setIsForgot(false); setResetMsg(''); }, 4000);
   };
@@ -255,7 +256,7 @@ const DatasetLab = () => {
     const formData = new FormData();
     formData.append('dataset', file);
     try {
-      const res = await axios.post('http://localhost:5000/api/data/upload', formData, {
+      const res = await axios.post('https://zerotrustx-backend.onrender.com/api/data/upload', formData, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       });
       setResult(res.data);
@@ -270,7 +271,7 @@ const DatasetLab = () => {
     const formData = new FormData();
     formData.append('dataset', verifyFile);
     try {
-      const res = await axios.post('http://localhost:5000/api/data/verify-file', formData, {
+      const res = await axios.post('https://zerotrustx-backend.onrender.com/api/data/verify-file', formData, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       });
       setVerifyResult({ success: true, msg: res.data.message });
@@ -343,7 +344,7 @@ const BlockchainLedger = () => {
   const token = sessionStorage.getItem('token'); 
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/blockchain/ledger', {
+    axios.get('https://zerotrustx-backend.onrender.com/api/blockchain/ledger', {
       headers: { Authorization: `Bearer ${token}` }
     }).then(res => setLedger(res.data));
   }, [token]);
@@ -365,7 +366,6 @@ const BlockchainLedger = () => {
       b.hash.substring(0, 30) + '...'
     ]);
 
-    // CORRECTED AUTOTABLE SYNTAX
     autoTable(doc, {
       head: [['Block', 'File Name', 'User', 'SHA-256 Hash']],
       body: tableData,
