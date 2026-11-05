@@ -56,13 +56,14 @@ const authorize = (roles = []) => {
 };
 
 // --- 3. AUTHENTICATION ROUTE ---
+// --- 3. AUTHENTICATION ROUTE ---
 const users = [
-    { id: 1, username: 'admin', password: 'password123', role: 'Admin' },
-    { id: 2, username: 'doctor', password: 'password123', role: 'Doctor' },
-    { id: 3, username: 'nurse', password: 'password123', role: 'Nurse' },
-    { id: 4, username: 'labstaff', password: 'password123', role: 'LabStaff' },
-    { id: 5, username: 'security', password: 'password123', role: 'Security' },
-    { id: 6, username: 'patient', password: 'password123', role: 'Patient' }
+    { id: 1, username: 'admin', password: 'ZTB_Secure#2026!', role: 'Admin' },
+    { id: 2, username: 'doctor', password: 'ZTB_Secure#2026!', role: 'Doctor' },
+    { id: 3, username: 'nurse', password: 'ZTB_Secure#2026!', role: 'Nurse' },
+    { id: 4, username: 'labstaff', password: 'ZTB_Secure#2026!', role: 'LabStaff' },
+    { id: 5, username: 'security', password: 'ZTB_Secure#2026!', role: 'Security' },
+    { id: 6, username: 'patient', password: 'ZTB_Secure#2026!', role: 'Patient' }
 ];
 
 app.post('/api/auth/login', (req, res) => {
