@@ -7,7 +7,9 @@ const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://ztb-hms-gules.vercel.app']
+}));
 app.use(express.json());
 
 // --- 1. SIMULATED BLOCKCHAIN ENGINE ---
